@@ -1,0 +1,11 @@
+version: '3'
+services:
+        web :
+                image : nginx
+                ports:
+                        - "8080:80"
+        busybox:
+                image: radial/busyboxplus:curl
+                command: /bin/sh -c "while true; do echo $$MESSAGE; curl web:80; sleep 5; done"
+                environment:
+                    - MESSAGE=Welcome to Docker World!
